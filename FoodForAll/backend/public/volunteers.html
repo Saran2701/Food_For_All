@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteers - Donated Foods</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .food-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .food-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .food-item h3 {
+            margin-top: 0;
+        }
+        .get-food-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .get-food-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Donated Foods List</h1>
+        <ul class="food-list" id="foodList">
+            <!-- Dynamic content will be inserted here -->
+        </ul>
+    </div>
+
+    <script>
+        fetch('http://localhost:3000/donations')
+            .then(response => response.json())
+            .then(data => {
+                const foodList = document.getElementById('foodList');
+                data.forEach(food => {
+                    const foodItem = document.createElement('li');
+                    foodItem.classList.add('food-item');
+                    foodItem.innerHTML = `
+                        <h3>Food ID: ${food.foodID}</h3>
+                        <p><strong>Food Name:</strong> ${food.foodname}</p>
+                        <p><strong>Meal Type:</strong> ${food.meal}</p>
+                        <p><strong>Category:</strong> ${food.category}</p>
+                        <p><strong>Quantity:</strong> ${food.quantity}</p>
+                        <p><strong>Contact:</strong> ${food.phoneno}</p>
+                        <p><strong>District:</strong> ${food.district}</p>
+                        <p><strong>Address:</strong> ${food.address}</p>
+                        
+                        <button 
+                    class="get-food-btn" 
+                    style="background-color: ${food.status === 'taken' ? 'red' : '#4CAF50'}" 
+                    ${food.status === 'taken' ? 'disabled' : ''} 
+                    onclick="getFood('${food.foodID}', '${food.foodname}')">
+                    ${food.status === 'available' ? 'GET FOOD' : 'TAKEN'}
+                    </button>
+
+
+                    `;
+                    foodList.appendChild(foodItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching or parsing data:', error);
+                const errorMessage = document.createElement('div');
+                errorMessage.textContent = 'Failed to fetch donation data: ' + error.message;
+                document.body.appendChild(errorMessage);
+            });
+
+        function getFood(foodId, foodName) {
+            window.location.href = `getfood.html?id=${foodId}&foodName=${encodeURIComponent(foodName)}`;
+        }
+
+        
+
+        
+        
+    </script>
+</body>
+</html>

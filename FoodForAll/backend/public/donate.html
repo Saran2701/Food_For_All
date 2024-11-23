@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donation Form</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('img/food donation2.jpg'); /* Adjust path as needed */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            background-color: #f69605f1;
+        }
+
+        .container {
+            width: 450px;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 20px auto;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 40px;
+            color: #ff6e06;
+        }
+
+        .regform {
+            padding: 20px;
+        }
+
+        .input input,
+        .input select,
+        .input textarea {
+            width: 100%;
+            font-size: 20px;
+            border: .5px solid #63707E;
+            border-radius: 6px;
+            padding: 14px 15px;
+            box-sizing: border-box;
+            margin: 5px 0px 15px;
+            color: black;
+        }
+
+        .radio input {
+            transform: scale(1.5);
+        }
+
+        .image-radio-group input[type="radio"] {
+            display: none;
+        }
+
+        .image-radio-group label {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .image-radio-group label img {
+            border: 2px solid transparent;
+            width: 150px; /* Adjust image width as needed */
+        }
+
+        .image-radio-group input[type="radio"]:checked + label img {
+            border-color: rgb(46, 44, 44);
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #ff6e06;
+            font-size: 20px;
+            color: white;
+            margin-top: 20px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            border: .5px solid black;
+            width: 100%;
+        }
+
+        button:hover {
+            color: black;
+        }
+
+        @media (max-width: 767px) {
+            .regform {
+                width: 300px;
+                font-size: 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            .input input,
+            .input select,
+            .input textarea {
+                font-size: 16px;
+            }
+
+            .radio input {
+                transform: scale(1.1);
+            }
+
+            .image-radio-group img {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="regform">
+            <form action="http://localhost:3000/fooddonateform" method="post">
+                <p class="logo">Food <b style="color: #333;">for all</b></p>
+
+                <div class="input">
+                    <label for="donorname">Donor Name:</label>
+                    <input type="text" id="donorname" name="donorname" required readonly>
+                </div>
+                <div class="input">
+                    <label for="foodname">Food Name:</label>
+                    <input type="text" id="foodname" name="foodname" required>
+                </div>
+
+                <div class="radio">
+                    <label for="meal">Meal type:</label>
+                    <br><br>
+                    <input type="radio" name="meal" id="veg" value="veg" required>
+                    <label for="veg">Veg</label>
+                    <input type="radio" name="meal" id="Non-veg" value="Non-veg" required>
+                    <label for="Non-veg">Non-veg</label>
+                </div>
+                <br>
+                <div class="input">
+                    <label for="food">Select the Category:</label>
+                    <br><br>
+                    <div class="image-radio-group">
+                        <input type="radio" id="raw-food" name="category" value="raw-food" checked>
+                        <label for="raw-food">
+                            <img src="img/raw food.jpg" alt="raw-food">
+                        </label>
+                        <input type="radio" id="cooked-food" name="category" value="cooked-food">
+                        <label for="cooked-food">
+                            <img src="img/cooked food.jpg" alt="cooked-food">
+                        </label>
+                    </div>
+                </div>
+                <div class="input">
+                    <label for="quantity">Quantity (person):</label>
+                    <input type="number" id="quantity" name="quantity" required>
+                </div>
+                <div class="input">
+                    <label for="phoneno">PhoneNo:</label>
+                    <input type="number" id="phoneno" name="phoneno" required>
+                </div>
+                <div class="input">
+                    <label for="district">District:</label>
+                    <select id="district" name="district" style="padding:10px;" required>
+                        <option value="ariyalur">Ariyalur</option>
+<option value="chengalpattu">Chengalpattu</option>
+<option value="chennai">Chennai</option>
+<option value="coimbatore">Coimbatore</option>
+<option value="cuddalore">Cuddalore</option>
+<option value="dharmapuri">Dharmapuri</option>
+<option value="dindigul">Dindigul</option>
+<option value="erode">Erode</option>
+<option value="kallakurichi">Kallakurichi</option>
+<option value="kanchipuram">Kanchipuram</option>
+<option value="kanniyakumari">Kanniyakumari</option>
+<option value="karur">Karur</option>
+<option value="krishnagiri">Krishnagiri</option>
+<option value="madurai">Madurai</option>
+<option value="nagapattinam">Nagapattinam</option>
+<option value="namakkal">Namakkal</option>
+<option value="nilgiris">Nilgiris</option>
+<option value="perambalur">Perambalur</option>
+<option value="pudukkottai">Pudukkottai</option>
+<option value="ramanathapuram">Ramanathapuram</option>
+<option value="ranipet">Ranipet</option>
+<option value="salem">Salem</option>
+<option value="sivaganga">Sivaganga</option>
+<option value="tenkasi">Tenkasi</option>
+<option value="thanjavur">Thanjavur</option>
+<option value="theni">Theni</option>
+<option value="thoothukkudi">Thoothukkudi</option>
+<option value="tiruchirappalli">Tiruchirappalli</option>
+<option value="tirunelveli">Tirunelveli</option>
+<option value="tirupathur">Tirupathur</option>
+<option value="tiruppur">Tiruppur</option>
+<option value="tiruvallur">Tiruvallur</option>
+<option value="tiruvannamalai">Tiruvannamalai</option>
+<option value="tiruvarur">Tiruvarur</option>
+<option value="vellore">Vellore</option>
+<option value="villupuram">Villupuram</option>
+<option value="virudhunagar">Virudhunagar</option>
+
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="btn">
+                    <button type="submit" onclick="getFood()" name="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    // Function to get cookie by name
+    function getCookie(name) {
+        let cookieArr = document.cookie.split(";");
+        for (let i = 0; i < cookieArr.length; i++) {
+            let cookiePair = cookieArr[i].split("=");
+            if (name === cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+
+    // Set the donor name from the cookie
+    window.onload = function() {
+        const username = getCookie('username'); // Replace 'username' with your actual cookie name
+        if (username) {
+            document.getElementById('donorname').value = username;
+        }
+    };
+
+    
+   
+    function getFood() {
+        const foodName = document.getElementById('foodname').value;
+        const foodId = document.getElemntByID('').value // Use the actual food ID you want to pass
+
+        // Construct the URL with both foodID and foodName
+        const url = `http://localhost:3000/getfood.html?foodID=${foodId}&foodName=${encodeURIComponent(foodName)}`;
+        console.log(url); // Log the URL for debugging
+        window.location.href = url;
+    }
+
+   
+</script>
+</html>

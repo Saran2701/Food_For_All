@@ -1,0 +1,220 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins;
+        user-select: none;
+    }
+
+body {
+    background-color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+}
+
+.nav-bar {
+    display: flex;
+}
+
+.nav-bar ul {
+    display: flex;
+}
+
+.nav-bar ul li {
+    margin: 0 10px;
+}
+
+.nav-bar ul li a {
+    color: #fff;
+    padding: 10px 15px;
+    transition: background 0.3s;
+}
+
+.nav-bar ul li a:hover,
+.nav-bar ul li a.active {
+    background-color: #f69605f1;
+    border-radius: 5px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+}
+
+.image-container {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    margin: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.image-slider {
+    flex: 1;
+    position: relative;
+    height: 400px;
+}
+.image-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s;
+}
+.image-slider img.active {
+    opacity: 1;
+}
+
+h1{
+color: #f69605f1;
+}
+ h1 b{
+color: #333;
+}
+
+li b{
+    color: #333;
+            }
+
+footer {
+    background-color: #f69605f1;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+</style>
+<body>
+    <header>
+        <div class="logo">Food <b style="color: #f69605f1">For All</b></div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="profile.html" >Profile</a></li>
+                <li><a href="login.html" onclick="return confirmLogout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        hamburger=document.querySelector(".hamburger");
+        hamburger.onclick =function(){
+            navBar=document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
+    <main>
+        <div class="content">
+            <div class="image-slider">
+                <img src="/img/hunger4.jpg" class="active" alt="Hunger Image 1">
+                <img src="/img/hunger5.jpg" alt="Hunger Image 2">
+                <img src="/img/hunger6.jpg" alt="Hunger Image 3">
+            </div>
+        </div>
+        <div class="content">
+            <h1>About Us</h1>
+            <p>Welcome to Food for All. Our initiative is to provide food to those in need and combat hunger across India. Join us in our journey to make a difference.</p>
+            <h1>Our Vision</h1>
+            <p>We envision a world where no one goes to bed hungry. We are committed to making this vision a reality through our various programs and initiatives.</p>
+      <h1> Our Mission</h1>
+      <p>Our mission is to collect excess food from marriage and party halls and provide it to those in need through the help of volunteers. This initiative aims to reduce food wastage and combat hunger.<p>
+        </div>
+    </main>
+    <script>
+        const images = document.querySelectorAll('.image-slider img');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextImage,3000 );
+    </script>
+    <footer>
+        <h3>&copy; 2024 Food for All. All rights reserved.</h3>
+    </footer>
+</body>
+</html>

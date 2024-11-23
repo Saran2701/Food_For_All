@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Food For All</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">Food <b style="color: #f69605f1">For All</b></div>
+      <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+      </div>
+      <nav class="nav-bar">
+          <ul>
+              <li><a href="index.html" >Home</a></li>
+              <li><a href="ab.html">About</a></li>
+              <li><a href="#profile.html" class="active">Profile</a></li>
+              <li><a href="login.html" onclick="return confirmLogout()">Logout</a></li>
+          </ul>
+      </nav>
+  </header>
+  <script>
+    // Function to get the value of a cookie by name
+    function getCookie(name) {
+        let cookieArr = document.cookie.split(";");
+        for (let i = 0; i < cookieArr.length; i++) {
+            let cookiePair = cookieArr[i].split("=");
+            if (name === cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+    function confirmLogout() {
+      return confirm("Are you sure you want to log out?");
+  }
+
+    // When the page loads, display the username from the cookie and fetch user details
+    window.onload = async function () {
+        const userName = getCookie("username");
+        if (userName) {
+            document.getElementById("userName").textContent = userName;
+
+            // Fetch user details from the server
+            const response = await fetch(`/user/${userName}`);
+            const userDetails = await response.json();
+
+            const donationsResponse = await fetch(`/user/${userName}/donations`);
+            const donations = await donationsResponse.json();
+            const donatedFoodsList = document.querySelector('.donated-foods ul');
+            donatedFoodsList.innerHTML = donations.map(donation => `<li>${donation.foodname}   --> ${donation.quantity} (Person)</li>`).join('');
+
+            const takenFoodsResponse = await fetch(`/user/${userName}/takenFoods`);
+            const takenFoods = await takenFoodsResponse.json();
+            const takenFoodsList = document.querySelector('.taken-foods ul');
+            takenFoodsList.innerHTML = takenFoods.map(food => `<li>${food.foodName}</li>`).join('');
+
+            
+            // Display user details
+            if (userDetails) {
+                document.getElementById("userAddress").textContent = userDetails.address;
+                document.getElementById("userPhone").textContent = userDetails.phone;
+            }
+        } else {
+            document.getElementById("userName").textContent = "Guest";
+            document.getElementById("userAddress").textContent = "N/A";
+            document.getElementById("userPhone").textContent = "N/A";
+        }
+    };
+</script>
+      <!-- <section class="profile-section" style="padding: 50px;">
+  <div class="profile-header" style="text-align: center; margin-bottom: 30px">
+    <h1>User Profile</h1>
+  </div>
+  <div class="profile-card" style="width: 50%; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center">Profile Information</h2>
+    <p style="font-size: 22px">
+      <b>Name:</b> <span id="userName">John Doe</span>
+    </p>
+    <p style="font-size: 22px">
+      <b>Address:</b> <span id="userAddress">Not available</span>
+    </p>
+    <p style="font-size: 22px">
+      <b>Mobile:</b> <span id="userPhone">Not available</span>
+    </p>
+  </div> -->
+
+
+      <!-- <div
+        class="food-section"
+        style="display: flex; justify-content: space-around; gap: 20px"
+      >
+        <div
+          class="donated-foods"
+          style="flex: 1; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px;"
+        >
+          <h2 style="text-align: center">Donated Foods</h2>
+          <ul style="list-style: none; padding: 0; margin-top: 20px">
+            <li style="padding: 10px 0; border-bottom: 1px solid #ccc">
+              Food Item 1
+            </li>
+            <li style="padding: 10px 0; border-bottom: 1px solid #ccc">
+              Food Item 2
+            </li>
+            <li style="padding: 10px 0; border-bottom: 1px solid #ccc">
+              Food Item 3
+            </li>
+          </ul>
+        </div>
+        <div
+          class="taken-foods"
+          style="flex: 1; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px;"
+        >
+          <h2 style="text-align: center">Taken Foods</h2>
+          <ul style="list-style: none; padding: 0; margin-top: 20px">
+            <li style="padding: 10px 0; border-bottom: 1px solid #ccc">
+              Food Item 1
+            </li>
+            <li style="padding: 10px 0; border-bottom: 1px solid #ccc">
+              Food Item 2
+            </li>
+            <li style="padding: 10px 0; border-bottom: 1px solid #ccc">
+              Food Item 3
+            </li>
+          </ul>
+        </div>
+      </div> -->
+
+      <!-- <div
+  class="food-section"
+  style="display: flex; justify-content: space-around; gap: 20px"
+>
+  <div
+    class="donated-foods"
+    style="flex: 1; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px;"
+  >
+    <h2 style="text-align: center">Donated Foods</h2>
+    <ul class="formatted-list">
+      <li><span class="food-item">Food Item 1</span> - <span class="quantity">2 kg</span></li>
+      <li><span class="food-item">Food Item 2</span> - <span class="quantity">5 people</span></li>
+      <li><span class="food-item">Food Item 3</span> - <span class="quantity">10 meals</span></li>
+    </ul>
+  </div>
+
+  <div
+    class="taken-foods"
+    style="flex: 1; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px;"
+  >
+    <h2 style="text-align: center">Taken Foods</h2>
+    <ul class="formatted-list">
+      <li><span class="food-item">Food Item 1</span></li>
+      <li><span class="food-item">Food Item 2</span></li>
+      <li><span class="food-item">Food Item 3</span></li>
+    </ul>
+  </div>
+</div>
+
+    </section> -->
+
+    <section class="profile-section" style="padding: 50px;">
+      <div class="profile-header" style="text-align: center; margin-bottom: 30px;">
+        <h1>User Profile</h1>
+      </div>
+      <div class="profile-card">
+        <h2 style="text-align: center">Profile Information</h2>
+        <p style="font-size: 22px">
+          <b>Name:</b> <span id="userName">John Doe</span>
+        </p>
+        <p style="font-size: 22px">
+          <b>Address:</b> <span id="userAddress">Not available</span>
+        </p>
+        <p style="font-size: 22px">
+          <b>Mobile:</b> <span id="userPhone">Not available</span>
+        </p>
+      </div>
+    
+      <!-- Add spacing between the profile card and food sections -->
+      <div class="food-section">
+        <div class="donated-foods">
+          <h2>Donated Foods</h2>
+          <ul class="formatted-list">
+            <li><span class="food-item">Food Item 1</span> - <span class="quantity">2 kg</span></li>
+            <li><span class="food-item">Food Item 2</span> - <span class="quantity">5 people</span></li>
+            <li><span class="food-item">Food Item 3</span> - <span class="quantity">10 meals</span></li>
+          </ul>
+        </div>
+    
+        <div class="taken-foods">
+          <h2>Taken Foods</h2>
+          <ul class="formatted-list">
+            <li><span class="food-item">Food Item 1</span></li>
+            <li><span class="food-item">Food Item 2</span></li>
+            <li><span class="food-item">Food Item 3</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    
+    <footer class="footer">
+      <div class="footer-left col-md-4 col-sm-6">
+        <p class="about">
+          <span> About us </span>Welcome to Food for All. Our initiative is to
+          provide food to those in need and combat hunger across India. Join us
+          in our journey to make a difference.
+        </p>
+      </div>
+      <div class="footer-center col-md-4 col-sm-6">
+        <div>
+          <p><span> Contact</span></p>
+        </div>
+        <div>
+          <p>(+91) 9698329094</p>
+        </div>
+        <div>
+          <p><a href="#">FoodForAll@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer-right col-md-4 col-sm-6">
+        <h2>Food<span> For All</span></h2>
+        <p class="menu">
+          <a href="#"> Home</a> | <a href="#"> About</a> |
+          <a href="#"> Services</a> | <a href="#"> Contact</a>
+        </p>
+        <p class="name">FoodForAll &copy; 2024</p>
+      </div>
+    </footer>
+  </body>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+        
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Poppins;
+      user-select: none;
+  } body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+    a {
+      text-decoration: none;
+      color: inherit;
+  }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+  }
+  .logo {
+    font-size: 24px;
+}
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+  }
+  
+  .hamburger .line {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 4px 0;
+  }
+    ul{
+      list-style: none;
+      padding: 0;
+    }
+    .nav-bar {
+      display: flex;
+  }
+  
+  .nav-bar ul {
+      display: flex;
+  }
+  
+  .nav-bar ul li {
+      margin: 0 10px;
+  }
+  
+  .nav-bar ul li a {
+      color: #fff;
+      padding: 10px 15px;
+      transition: background 0.3s;
+  }
+  
+  .nav-bar ul li a:hover,
+  .nav-bar ul li a.active {
+      background-color: #f69605f1;
+      border-radius: 5px;
+  }
+  h1{
+    color: #f69605f1;
+    }
+     h1 b{
+    color: #333;
+    }
+    
+    li b{
+        color: #333;
+                }
+    .profile-section {
+      padding: 50px;
+      align-items: center;
+    }
+    
+    .profile-header{
+      align-items: center;
+    }
+    footer {
+      padding: 20px;
+      background-color: #f69605f1;
+      color: white;
+      text-align: center;
+    }
+    
+    h2 {
+      font-size: 24px; /* Increased header font size */
+      margin-bottom: 20px; /* Added spacing below headers */
+    }
+    
+    
+    .profile-card,
+    .food-section div {
+      font-size: 22px; /* Increase overall profile section font size */
+    }
+    .profile-card {
+      width: 50%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px; /* Added space below the profile card */
+    }
+    
+    .food-section {
+      width: 50%; /* Center both sections in the same side */
+      max-width: 600px; /* Keep the width similar to the profile card */
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .donated-foods, .taken-foods {
+      margin-bottom: 30px; /* Add some space between Donated and Taken sections */
+    }
+    
+    ul.formatted-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      font-size: 20px; /* Increased font size */
+    }
+    
+    ul.formatted-list li {
+      padding: 15px 0; /* Added more space between list items */
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    ul.formatted-list .food-item {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    ul.formatted-list .quantity {
+      color: #f69605f1;
+    }
+    
+  </style>
+</html>
+
+

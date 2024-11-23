@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food For All</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header style="position: sticky;top: 0;">
+        <div class="logo">Food <b style="color: #f69605f1;">For All</b></div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="ab.html">About</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html" onclick="return confirmLogout()">Logout</a></li>
+
+                
+                
+            </ul>
+        </nav>
+    </header>
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        hamburger.onclick = function() {
+            const navBar = document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+        
+            function confirmLogout() {
+                return confirm("Are you sure you want to log out?");
+            }
+        
+    </script>
+    <section class="banner" style="display: flex;flex-direction: column;gap: 10%;">
+        <a href="donate.html" style="opacity: .7;border-radius: 30px;">Donate Food</a>
+        <a href="volunteers.html" style="opacity: .7;border-radius: 30px;">View Available Foods</a>
+    </section>
+    <div class="content">
+        <p style="font-size: 23px;">
+            “Join the hands to break the chain of hunger, make a change today.”
+        </p>
+        <div class="deli" style="display: grid;">
+            <p class="heading">LET'S FIGHT THE HUNGER</p>
+            <br>
+            <p class="para">"Your donation will be immediately collected and sent to needy people"</p>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-left col-md-4 col-sm-6">
+            <p class="about">
+                <span> About us </span>Welcome to Food for All. Our initiative is to provide food to those in need and combat hunger across India. Join us in our journey to make a difference.
+            </p>
+        </div>
+        <div class="footer-center col-md-4 col-sm-6">
+            <div>
+                <p><span> Contact</span></p>
+            </div>
+            <div>
+                <p>(+91) 9698329094</p>
+            </div>
+            <div>
+                <p><a href="#">FoodForAll@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right col-md-4 col-sm-6">
+            <h2> Food<span> For All</span></h2>
+            <p class="menu">
+                <a href="#"> Home</a> |
+                <a href="#"> About</a> |
+                <a href="#"> Services</a> |
+                <a href="#"> Contact</a>
+            </p>
+            <p class="name"> FoodForAll &copy; 2024</p>
+        </div>
+    </footer>
+</body>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins;
+        user-select: none;
+    }
+
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    .hamburger .line {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 4px 0;
+    }
+
+    .nav-bar {
+        display: flex;
+    }
+
+    .nav-bar ul {
+        display: flex;
+    }
+
+    .nav-bar ul li {
+        margin: 0 10px;
+    }
+
+    .nav-bar ul li a {
+        color: #fff;
+        padding: 10px 15px;
+        transition: background 0.3s;
+    }
+
+    .nav-bar ul li a:hover,
+    .nav-bar ul li a.active {
+        background-color: #f69605f1;
+        border-radius: 5px;
+    }
+
+    .banner {
+        height: 100vh;
+        width: 100%;
+        background: url('/img/Give A Smile Them!.jpg') no-repeat center center;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 36px;
+    }
+
+    .banner a {
+        background-color: #f69605f1;
+        color: #fff;
+        padding: 15px 30px;
+        font-size: 24px;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .banner a:hover {
+        background-color: #333;
+    }
+
+    /* Content Section */
+    .content {
+        padding: 20px;
+        text-align: center;
+        background-color: #f9f9f9;
+    }
+
+    /* Delivery Section */
+    .deli {
+        padding: 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    .deli .heading {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .deli .para {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Footer Section */
+    .footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 20px;
+        background-color: #f69605f1;
+        color: #fff;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        width: 30%;
+    }
+
+    .footer-left .about span {
+        font-weight: bold;
+    }
+
+    .footer-center p span {
+        font-weight: bold;
+    }
+
+    .footer-center a {
+        color: #333;
+    }
+
+    .footer-right h2 span {
+        color: #333;
+    }
+
+    .footer-right .menu a {
+        color: #333;
+        margin: 0 5px;
+    }
+
+    .footer-right .name {
+        margin-top: 10px;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex;
+        }
+
+        .nav-bar {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: #333;
+        }
+
+        .nav-bar.active {
+            display: flex;
+        }
+
+        .nav-bar ul {
+            flex-direction: column;
+        }
+
+        .nav-bar ul li {
+            text-align: center;
+        }
+
+        .footer {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+</html>
